@@ -2,6 +2,7 @@
 import { useNotesStore } from '@/stores/notes';
 import { computed, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import * as linkify from "linkifyjs";
 
 const noteId = useRoute().params.id;
 const store = useNotesStore();
@@ -51,12 +52,20 @@ function backToOverview() {
   if (!note.title && !note.text) {
     store.deleteNote(note);
   }
-  
+
   router.push('/');
+}
+
+function findLinks(string: string) {
+    const links = linkify.find(string);
+    return links.map(link => {
+        return link.href
+    })
 }
 
 onMounted(() => {
   textAreaAdjust(document.querySelector('.title textarea'));
+  textAreaAdjust(document.querySelector('.content textarea'));
 })
 
 </script>
@@ -75,7 +84,13 @@ onMounted(() => {
       <textarea @keyup="textAreaAdjust($event.target)" class="heading" v-model="note.title" placeholder="Title" />
     </div>
     <div class="content">
-        <textarea v-model="note.text" />
+        <textarea @keyup="textAreaAdjust($event.target)" v-model="note.text" />
+    </div>
+    <div class="link-preview" v-for="link in findLinks(note.text)">
+      <span class="icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18,10.82a1,1,0,0,0-1,1V19a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V8A1,1,0,0,1,5,7h7.18a1,1,0,0,0,0-2H5A3,3,0,0,0,2,8V19a3,3,0,0,0,3,3H16a3,3,0,0,0,3-3V11.82A1,1,0,0,0,18,10.82Zm3.92-8.2a1,1,0,0,0-.54-.54A1,1,0,0,0,21,2H15a1,1,0,0,0,0,2h3.59L8.29,14.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L20,5.41V9a1,1,0,0,0,2,0V3A1,1,0,0,0,21.92,2.62Z" /></svg>
+      </span>
+      <a :href="link" @click.stop>{{ link }}</a>
     </div>
     <div class="modal">
       <p>Delete item?</p>
@@ -126,7 +141,7 @@ onMounted(() => {
 
 .content textarea {
   width: 100%;
-  height: 76vh;
+  height: 5rem;
   line-height: 1.5;
 }
 
@@ -169,5 +184,30 @@ textarea::-webkit-scrollbar {
 
 .modal .delete {
   background-color: rgb(157, 42, 42);
+}
+
+.link-preview {
+    margin-top: 2rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+    font-size: 80%;
+    padding: 0.5rem 1rem;
+    display: flex;
+}
+
+.link-preview a {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.icon {
+    margin-right: 0.5rem;
+}
+
+.icon svg {
+    width: 10px;
+    height: 10px;
+    fill: var(--color-link);
 }
 </style>
