@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import linkifyStr from "linkify-string";
+
 const props = defineProps(['note']);
 
 function truncate(string: string, length: number) {
@@ -12,7 +14,7 @@ function truncate(string: string, length: number) {
 <router-link :to="'/note/' + props.note.id">
     <div class="note">
     <h3 v-if="props.note.title">{{ truncate(props.note.title, 40) }}</h3>
-    <p>{{ truncate(props.note.text, 100) }}</p>
+    <p v-html="linkifyStr(truncate(props.note.text, 200))"></p>
     </div>
 </router-link>
 
