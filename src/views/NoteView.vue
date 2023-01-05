@@ -141,7 +141,7 @@ onMounted(() => {
 
 .content textarea {
   width: 100%;
-  height: 5rem;
+  height: 3rem;
   line-height: 1.5;
 }
 
@@ -168,7 +168,7 @@ textarea::-webkit-scrollbar {
   padding: 1rem;
   width: 80%;
   left: 10%;
-  top: 45%;
+  top: 35%;
 }
 
 .modal button {
