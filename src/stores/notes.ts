@@ -38,11 +38,19 @@ export const useNotesStore = defineStore('notes', () => {
     notes.value.push(note)
   }
 
+  function deleteNote(note: any) {
+    const index = notes.value.indexOf(note);
+    if (index > -1) {
+      notes.value.splice(index, 1);
+    }
+  }
+
   return { 
     notes,
     searchTerm,
     getNoteById,
     searchNotes,
-    addNote
+    addNote,
+    deleteNote
   }
 })

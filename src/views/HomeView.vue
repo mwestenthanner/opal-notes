@@ -14,7 +14,8 @@ const searchedNotes = computed(() => store.searchNotes());
 <template>
   <Header />
   <main>
-    <NoteCard v-for="note in searchedNotes" :note="note" />
+    <NoteCard v-if="searchedNotes.length" v-for="note in searchedNotes" :note="note" />
+    <p v-else>No notes found.</p>
   </main>
   <AddButton />
 </template>
