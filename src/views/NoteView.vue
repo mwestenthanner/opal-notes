@@ -168,7 +168,7 @@ textarea::-webkit-scrollbar {
   padding: 1rem;
   width: 80%;
   left: 10%;
-  top: 35%;
+  top: 45%;
 }
 
 .modal button {
