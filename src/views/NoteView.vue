@@ -47,6 +47,14 @@ function deleteItem() {
   router.push('/');
 }
 
+function backToOverview() {
+  if (!note.title && !note.text) {
+    store.deleteNote(note);
+  }
+  
+  router.push('/');
+}
+
 onMounted(() => {
   textAreaAdjust(document.querySelector('.title textarea'));
 })
@@ -56,10 +64,10 @@ onMounted(() => {
 <template>
   <main>
     <div class="menu">
-      <router-link to="/" class="back">
+      <button class="back" @click="backToOverview()">
         <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><title/><g data-name="1" id="_1"><path d="M353,450a15,15,0,0,1-10.61-4.39L157.5,260.71a15,15,0,0,1,0-21.21L342.39,54.6a15,15,0,1,1,21.22,21.21L189.32,250.1,363.61,424.39A15,15,0,0,1,353,450Z"/></g></svg>
-      </router-link>
-      <button @click="toggleModal()">
+      </button>
+      <button class="delete" @click="toggleModal()">
         <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><title/><path d="M112,112l20,320c.95,18.49,14.4,32,32,32H348c17.67,0,30.87-13.51,32-32l20-320" s/><line x1="80" x2="432" y1="112" y2="112"/><path d="M192,112V72h0a23.93,23.93,0,0,1,24-24h80a23.93,23.93,0,0,1,24,24h0v40" /><line x1="256" x2="256" y1="176" y2="400"/><line x1="184" x2="192" y1="176" y2="400"/><line x1="328" x2="320" y1="176" y2="400"/></svg>
       </button>
     </div>
@@ -83,18 +91,18 @@ onMounted(() => {
   justify-content: space-between;
 }
 
+.menu button {
+  background-color: transparent;
+  border: none;
+}
+
 .back svg {
   width: auto;
   height: 24px;
   fill: var(--color-text);
 }
 
-.menu button {
-  background-color: transparent;
-  border: none;
-}
-
-.menu button svg {
+.delete svg {
   width: auto;
   height: 24px;
   stroke: var(--color-text);

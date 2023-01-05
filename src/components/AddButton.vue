@@ -39,6 +39,7 @@ button {
     height: 3rem;
     border-radius: 1rem;
     font-size: 1.5rem;
-    color: var(--color-link);
+    color: var(--color-text);
+    background-color: var(--color-link);
 }
 </style>
