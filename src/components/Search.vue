@@ -28,8 +28,8 @@ const { searchTerm } = storeToRefs(store);
 }
 
 .search svg {
-  width: 20px;
-  height: 20px;
+  width: 1rem;
+  height: 1rem;
 }
 
 .search svg {

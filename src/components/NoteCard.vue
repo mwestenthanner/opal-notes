@@ -91,8 +91,8 @@ function openNote() {
 }
 
 .icon svg {
-    width: 10px;
-    height: 10px;
+    width: 0.8rem;
+    height: 0.8rem;
     fill: var(--color-link);
 }
 </style>

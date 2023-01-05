@@ -22,8 +22,8 @@ header {
 }
 
 .logo, .logo svg {
-  width: 30px;
-  height: 30px;
+  width: 2rem;
+  width: 2rem;
   display: inline;
 }
 

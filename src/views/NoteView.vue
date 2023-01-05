@@ -113,13 +113,13 @@ onMounted(() => {
 
 .back svg {
   width: auto;
-  height: 24px;
+  height: 1.5rem;
   fill: var(--color-text);
 }
 
 .delete svg {
   width: auto;
-  height: 24px;
+  height: 1.5rem;
   stroke: var(--color-text);
   stroke-width: 24px;
   fill: none;
@@ -206,8 +206,8 @@ textarea::-webkit-scrollbar {
 }
 
 .icon svg {
-    width: 10px;
-    height: 10px;
+    width: 0.8rem;
+    height: 0.8rem;
     fill: var(--color-link);
 }
 </style>
