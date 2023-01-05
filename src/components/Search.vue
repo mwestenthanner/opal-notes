@@ -10,7 +10,7 @@ const { searchTerm } = storeToRefs(store);
 <template>
 <div class="search">
     <span class="icon"><svg aria-labelledby="searchIconTitle" fill="none" role="img" stroke-linecap="square" stroke-linejoin="miter" stroke-width="1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title id="searchIconTitle"/><path d="M14.4121122,14.4121122 L20,20"/><circle cx="10" cy="10" r="6"/></svg></span>
-    <input v-model="searchTerm" type="search" id="site-search" name="search" placeholder="Search..." />
+    <input v-model="searchTerm" type="search" id="site-search" name="search" placeholder="Search notes" />
 </div>
 </template>
 

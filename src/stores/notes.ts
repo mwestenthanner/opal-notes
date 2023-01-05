@@ -4,21 +4,29 @@ import { defineStore } from 'pinia'
 export const useNotesStore = defineStore('notes', () => {
   const notes = ref([
     {
-      id: 1,
+      id: "1",
       title: "Heading",
       text: "Here's some text"
     },
     {
-      id: 2,
+      id: "2",
+      title: "",
       text: "https://capacitorjs.com/docs/basics/workflow"
     },
     {
-      id: 3,
+      id: "3",
+      title: "",
       text: "Here's some more text. This is an entire note. Here we have quite some text."
     }
   ]);
 
-  const searchTerm = ref('')
+  const searchTerm = ref('');
+
+  function getNoteById(id: string) {
+    return notes.value.find((note) => {
+      return note.id == id;
+    })
+  }
 
   function searchNotes() {
     return notes.value.filter((note) => {
@@ -33,6 +41,7 @@ export const useNotesStore = defineStore('notes', () => {
   return { 
     notes,
     searchTerm,
+    getNoteById,
     searchNotes,
     addNote
   }
